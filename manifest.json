@@ -3,11 +3,18 @@
   "name": "Omni Symbol Nav",
   "description": "Token-efficient code navigation via ripgrep. Adds find_symbol, list_file_symbols, and find_references tools so the agent reads only relevant code, not entire files. Works with all LLM providers.",
   "author": "GraysonBannister",
-  "version": "1.0.0",
-  "tags": ["token-efficiency", "navigation", "search", "code-analysis"],
+  "version": "1.0.1",
+  "tags": [
+    "token-efficiency",
+    "navigation",
+    "search",
+    "code-analysis"
+  ],
   "repo": "https://github.com/GraysonBannister/omni-symbol-nav",
   "download": "https://github.com/GraysonBannister/omni-symbol-nav/archive/refs/heads/main.zip",
   "entrypoint": "index.js",
   "minOmniCodeVersion": "2.0.0",
-  "platforms": ["desktop"]
+  "platforms": [
+    "desktop"
+  ]
 }
