@@ -430,10 +430,27 @@ function activate(context) {
   context.registerTool(findSymbolTool);
   context.registerTool(listFileSymbolsTool);
   context.registerTool(findReferencesTool);
+
+  // Check that rg is available and log its resolved path
+  const rgAvailable = (() => {
+    try {
+      const result = require('child_process').spawnSync(RG_BIN, ['--version'], { encoding: 'utf-8', timeout: 3000 });
+      if (result.error) return null;
+      return result.stdout?.split('\n')[0]?.trim() || 'unknown version';
+    } catch {
+      return null;
+    }
+  })();
+
+  if (rgAvailable) {
+    console.log(`[omni-symbol-nav] Activated — tools registered: find_symbol, list_file_symbols, find_references (rg: ${rgAvailable})`);
+  } else {
+    console.warn('[omni-symbol-nav] Activated with WARNING — ripgrep (rg) not found on PATH. Tools will return an error until rg is installed. Set RG_PATH env var to specify a custom location.');
+  }
 }
 
 function deactivate() {
-  // Tools are unregistered automatically on reload.
+  console.log('[omni-symbol-nav] Deactivated');
 }
 
 module.exports = { activate, deactivate };
